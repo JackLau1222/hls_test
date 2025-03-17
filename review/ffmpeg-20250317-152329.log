@@ -1,0 +1,2588 @@
+ffmpeg started on 2025-03-17 at 15:23:29
+Report written to "ffmpeg-20250317-152329.log"
+Log level: 48
+Command line:
+ffmpeg -threads 0 -i big_bunny_10s_30fps.mp4 -i 3840x2160.png -filter_complex "[0:v][1:v]overlay=50:50[out0]" -flags +cgop+ilme -pix_fmt nv12 -g 24 -keyint_min 48 -b_strategy 0 -bf 1 -c:a:0 aac -b:a:0 128000 -preset veryfast -tune zerolatency -ac:a:0 2 -ar:a:0 48000 -map "[out0]" -map a:0 -s:v:0 3840x2160 -c:v:0 h264_videotoolbox -b:v:0 15000000 -force_key_frames:v:0 "expr:gte(t,n_forced*2)" -profile:v:0 high -level:v:0 5.2 -minrate:v:0 15000000 -maxrate:v:0 15000000 -bufsize:v:0 15000000 -metadata "title=Tears of Steel" -metadata:s:a:0 "language=eng" -use_timeline 1 -use_template 1 -async 1 -vsync 1 -ldash 1 -lhls 1 -index_correction 1 -strftime 1 -adaptation_sets "id=0,streams=0 id=1,streams=1" -mpd_profile 1+2 -hls_playlist 1 -hls_master_name master.m3u8 -init_seg_name "\$RepresentationID\$/init_stream_\$Bandwidth\$.mp4" -media_seg_name "\$RepresentationID\$/chunk_stream_\$Bandwidth\$_\$Time\$.\$ext\$" -seg_duration 2 -frag_duration 2 -frag_type duration -strict experimental -movflags +faststart+cmaf -write_prft 1 -utc_timing_url "https://time.akamai.com/?iso" -dash_segment_type mp4 -chunk_duration_ms 2000 -r 24 -f dash video.mpd -report
+ffmpeg version N-118448-g43be8d0728 Copyright (c) 2000-2025 the FFmpeg developers
+  built with Apple clang version 16.0.0 (clang-1600.0.26.6)
+  configuration: --enable-gpl --enable-sdl2 --enable-libx264 --enable-libx265 --enable-libopus --enable-shared --disable-stripping --enable-debug=3 --disable-optimizations --disable-metal
+  libavutil      59. 56.100 / 59. 56.100
+  libavcodec     61. 33.100 / 61. 33.100
+  libavformat    61.  9.107 / 61.  9.107
+  libavdevice    61.  4.100 / 61.  4.100
+  libavfilter    10.  9.100 / 10.  9.100
+  libswscale      8. 13.100 /  8. 13.100
+  libswresample   5.  4.100 /  5.  4.100
+  libpostproc    58.  4.100 / 58.  4.100
+Splitting the commandline.
+Reading option '-threads' ... matched as AVOption 'threads' with argument '0'.
+Reading option '-i' ... matched as input url with argument 'big_bunny_10s_30fps.mp4'.
+Reading option '-i' ... matched as input url with argument '3840x2160.png'.
+Reading option '-filter_complex' ... matched as option 'filter_complex' (create a complex filtergraph) with argument '[0:v][1:v]overlay=50:50[out0]'.
+Reading option '-flags' ... matched as AVOption 'flags' with argument '+cgop+ilme'.
+Reading option '-pix_fmt' ... matched as option 'pix_fmt' (set pixel format) with argument 'nv12'.
+Reading option '-g' ... matched as AVOption 'g' with argument '24'.
+Reading option '-keyint_min' ... matched as AVOption 'keyint_min' with argument '48'.
+Reading option '-b_strategy' ... matched as AVOption 'b_strategy' with argument '0'.
+Reading option '-bf' ... matched as AVOption 'bf' with argument '1'.
+Reading option '-c:a:0' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'aac'.
+Reading option '-b:a:0' ... matched as option 'b' (video bitrate (please use -b:v)) with argument '128000'.
+Reading option '-preset' ... matched as AVOption 'preset' with argument 'veryfast'.
+Reading option '-tune' ... matched as AVOption 'tune' with argument 'zerolatency'.
+Reading option '-ac:a:0' ... matched as option 'ac' (set number of audio channels) with argument '2'.
+Reading option '-ar:a:0' ... matched as option 'ar' (set audio sampling rate (in Hz)) with argument '48000'.
+Reading option '-map' ... matched as option 'map' (set input stream mapping) with argument '[out0]'.
+Reading option '-map' ... matched as option 'map' (set input stream mapping) with argument 'a:0'.
+Reading option '-s:v:0' ... matched as option 's' (set frame size (WxH or abbreviation)) with argument '3840x2160'.
+Reading option '-c:v:0' ... matched as option 'c' (select encoder/decoder ('copy' to copy stream without reencoding)) with argument 'h264_videotoolbox'.
+Reading option '-b:v:0' ... matched as option 'b' (video bitrate (please use -b:v)) with argument '15000000'.
+Reading option '-force_key_frames:v:0' ... matched as option 'force_key_frames' (force key frames at specified timestamps) with argument 'expr:gte(t,n_forced*2)'.
+Reading option '-profile:v:0' ... matched as option 'profile' (set profile) with argument 'high'.
+Reading option '-level:v:0' ... matched as AVOption 'level:v:0' with argument '5.2'.
+Reading option '-minrate:v:0' ... matched as AVOption 'minrate:v:0' with argument '15000000'.
+Reading option '-maxrate:v:0' ... matched as AVOption 'maxrate:v:0' with argument '15000000'.
+Reading option '-bufsize:v:0' ... matched as AVOption 'bufsize:v:0' with argument '15000000'.
+Reading option '-metadata' ... matched as option 'metadata' (add metadata) with argument 'title=Tears of Steel'.
+Reading option '-metadata:s:a:0' ... matched as option 'metadata' (add metadata) with argument 'language=eng'.
+Reading option '-use_timeline' ... matched as AVOption 'use_timeline' with argument '1'.
+Reading option '-use_template' ... matched as AVOption 'use_template' with argument '1'.
+Reading option '-async' ... matched as AVOption 'async' with argument '1'.
+Reading option '-vsync' ... matched as option 'vsync' (set video sync method globally; deprecated, use -fps_mode) with argument '1'.
+Reading option '-ldash' ... matched as AVOption 'ldash' with argument '1'.
+Reading option '-lhls' ... matched as AVOption 'lhls' with argument '1'.
+Reading option '-index_correction' ... matched as AVOption 'index_correction' with argument '1'.
+Reading option '-strftime' ... matched as AVOption 'strftime' with argument '1'.
+Reading option '-adaptation_sets' ... matched as AVOption 'adaptation_sets' with argument 'id=0,streams=0 id=1,streams=1'.
+Reading option '-mpd_profile' ... matched as AVOption 'mpd_profile' with argument '1+2'.
+Reading option '-hls_playlist' ... matched as AVOption 'hls_playlist' with argument '1'.
+Reading option '-hls_master_name' ... matched as AVOption 'hls_master_name' with argument 'master.m3u8'.
+Reading option '-init_seg_name' ... matched as AVOption 'init_seg_name' with argument '$RepresentationID$/init_stream_$Bandwidth$.mp4'.
+Reading option '-media_seg_name' ... matched as AVOption 'media_seg_name' with argument '$RepresentationID$/chunk_stream_$Bandwidth$_$Time$.$ext$'.
+Reading option '-seg_duration' ... matched as AVOption 'seg_duration' with argument '2'.
+Reading option '-frag_duration' ... matched as AVOption 'frag_duration' with argument '2'.
+Reading option '-frag_type' ... matched as AVOption 'frag_type' with argument 'duration'.
+Reading option '-strict' ...Routing option strict to both codec and muxer layer
+ matched as AVOption 'strict' with argument 'experimental'.
+Reading option '-movflags' ... matched as AVOption 'movflags' with argument '+faststart+cmaf'.
+Reading option '-write_prft' ... matched as AVOption 'write_prft' with argument '1'.
+Reading option '-utc_timing_url' ... matched as AVOption 'utc_timing_url' with argument 'https://time.akamai.com/?iso'.
+Reading option '-dash_segment_type' ... matched as AVOption 'dash_segment_type' with argument 'mp4'.
+Reading option '-chunk_duration_ms' ... matched as AVOption 'chunk_duration_ms' with argument '2000'.
+Reading option '-r' ... matched as option 'r' (override input framerate/convert to given output framerate (Hz value, fraction or abbreviation)) with argument '24'.
+Reading option '-f' ... matched as option 'f' (force container format (auto-detected otherwise)) with argument 'dash'.
+Reading option 'video.mpd' ... matched as output url.
+Reading option '-report' ... matched as option 'report' (generate a report) with argument '1'.
+Finished splitting the commandline.
+Parsing a group of options: global .
+Applying option filter_complex (create a complex filtergraph) with argument [0:v][1:v]overlay=50:50[out0].
+Applying option vsync (set video sync method globally; deprecated, use -fps_mode) with argument 1.
+-vsync is deprecated. Use -fps_mode
+Passing a number to -vsync is deprecated, use a string argument as described in the manual.
+Applying option report (generate a report) with argument 1.
+Successfully parsed a group of options.
+[AVFilterGraph @ 0x12180e100] Setting 'x' to value '50'
+[AVFilterGraph @ 0x12180e100] Setting 'y' to value '50'
+Parsing a group of options: input url big_bunny_10s_30fps.mp4.
+Successfully parsed a group of options.
+Opening an input file: big_bunny_10s_30fps.mp4.
+[AVFormatContext @ 0x120f064e0] Opening 'big_bunny_10s_30fps.mp4' for reading
+[file @ 0x120f067d0] Setting default whitelist 'file,crypto,data'
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Format mov,mp4,m4a,3gp,3g2,mj2 probed with size=2048 and score=100
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] ISO: File Type Major Brand: isom
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Unknown dref type 0x206c7275 size 12
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Processing st: 0, edit list 0 - media time: 1024, duration: 153600
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Offset DTS by 1024 to make first pts zero.
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Setting codecpar->delay to 2 for stream st: 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Unknown dref type 0x206c7275 size 12
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Processing st: 1, edit list 0 - media time: 1024, duration: 441000
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] drop a frame at curr_cts: 0 @ 0
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] Before avformat_find_stream_info() pos: 2555077 bytes read:45320 seeks:1 nb_streams:2
+[h264 @ 0x120f070f0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x120f070f0] Decoding VUI
+[h264 @ 0x120f070f0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 64, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft32_ns_float_neon - type: fft_float, len: 32, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 64, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft32_ns_float_neon - type: fft_float, len: 32, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_3xM_inv_float_c - type: mdct_float, len: 96, factors[2]: [3, any], flags: [unaligned, out_of_place, inv_only]
+        fft16_ns_float_neon - type: fft_float, len: 16, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_15xM_inv_float_c - type: mdct_float, len: 120, factors[2]: [15, any], flags: [unaligned, out_of_place, inv_only]
+        fft4_fwd_float_neon - type: fft_float, len: 4, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 128, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 64, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_15xM_inv_float_c - type: mdct_float, len: 480, factors[2]: [15, any], flags: [unaligned, out_of_place, inv_only]
+        fft16_ns_float_neon - type: fft_float, len: 16, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 512, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 256, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_3xM_inv_float_c - type: mdct_float, len: 768, factors[2]: [3, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 128, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_15xM_inv_float_c - type: mdct_float, len: 960, factors[2]: [15, any], flags: [unaligned, out_of_place, inv_only]
+        fft32_ns_float_neon - type: fft_float, len: 32, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 1024, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 512, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_fwd_float_c - type: mdct_float, len: 1024, factors[2]: [2, any], flags: [unaligned, out_of_place, fwd_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 512, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+[h264 @ 0x120f070f0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x120f070f0] Decoding VUI
+[h264 @ 0x120f070f0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[h264 @ 0x120f070f0] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[h264 @ 0x120f070f0] Format yuv420p chosen by get_format().
+[h264 @ 0x120f070f0] Reinit context to 1920x1088, pix_fmt: yuv420p
+[h264 @ 0x120f070f0] no picture 
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] demuxer injecting skip 1024 / discard 0
+[aac @ 0x120f07c20] skip 1024 / discard 0 samples due to side data
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] All info found
+[mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f064e0] After avformat_find_stream_info() pos: 567 bytes read:78088 seeks:2 frames:3
+Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'big_bunny_10s_30fps.mp4':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    encoder         : Lavf58.76.100
+  Duration: 00:00:10.00, start: 0.000000, bitrate: 2044 kb/s
+  Stream #0:0[0x1](und), 2, 1/15360: Video: h264 (High) (avc1 / 0x31637661), yuv420p(progressive), 1920x1080 [SAR 1:1 DAR 16:9], 1904 kb/s, 30 fps, 30 tbr, 15360 tbn (default)
+    Metadata:
+      handler_name    : VideoHandler
+      vendor_id       : [0][0][0][0]
+  Stream #0:1[0x2](und), 1, 1/44100: Audio: aac (LC) (mp4a / 0x6134706D), 44100 Hz, stereo, fltp, 129 kb/s (default)
+    Metadata:
+      handler_name    : SoundHandler
+      vendor_id       : [0][0][0][0]
+Successfully opened the file.
+Parsing a group of options: input url 3840x2160.png.
+Successfully parsed a group of options.
+Opening an input file: 3840x2160.png.
+[AVFormatContext @ 0x1013055f0] Opening '3840x2160.png' for reading
+[file @ 0x1013058b0] Setting default whitelist 'file,crypto,data'
+[png_pipe @ 0x1013055f0] Format png_pipe probed with size=2048 and score=99
+[png_pipe @ 0x1013055f0] Before avformat_find_stream_info() pos: 0 bytes read:10197 seeks:0 nb_streams:1
+[png_pipe @ 0x1013055f0] After avformat_find_stream_info() pos: 10197 bytes read:10197 seeks:0 frames:1
+Input #1, png_pipe, from '3840x2160.png':
+  Duration: N/A, bitrate: N/A
+  Stream #1:0, 1, 1/25: Video: png, rgb24(pc, gbr/bt709/iec61966-2-1), 447x121 [SAR 3779:3779 DAR 447:121], 25 fps, 25 tbr, 25 tbn
+Successfully opened the file.
+Parsing a group of options: output url video.mpd.
+Applying option pix_fmt (set pixel format) with argument nv12.
+Applying option c:a:0 (select encoder/decoder ('copy' to copy stream without reencoding)) with argument aac.
+Applying option b:a:0 (video bitrate (please use -b:v)) with argument 128000.
+Applying option ac:a:0 (set number of audio channels) with argument 2.
+Applying option ar:a:0 (set audio sampling rate (in Hz)) with argument 48000.
+Applying option map (set input stream mapping) with argument [out0].
+Applying option map (set input stream mapping) with argument a:0.
+Applying option s:v:0 (set frame size (WxH or abbreviation)) with argument 3840x2160.
+Applying option c:v:0 (select encoder/decoder ('copy' to copy stream without reencoding)) with argument h264_videotoolbox.
+Applying option b:v:0 (video bitrate (please use -b:v)) with argument 15000000.
+Applying option force_key_frames:v:0 (force key frames at specified timestamps) with argument expr:gte(t,n_forced*2).
+Applying option profile:v:0 (set profile) with argument high.
+Applying option metadata (add metadata) with argument title=Tears of Steel.
+Applying option metadata:s:a:0 (add metadata) with argument language=eng.
+Applying option r (override input framerate/convert to given output framerate (Hz value, fraction or abbreviation)) with argument 24.
+Applying option f (force container format (auto-detected otherwise)) with argument dash.
+Successfully parsed a group of options.
+Opening an output file: video.mpd.
+[out#0/dash @ 0x105004590] Adding streams from explicit maps...
+[out#0/dash @ 0x105004590] Creating output stream from an explicitly mapped complex filtergraph 0, output [out0]
+[vost#0:0/h264_videotoolbox @ 0x105005390] Created video stream from complex filtergraph 0:[overlay:default]
+[vost#0:0/h264_videotoolbox @ 0x105005390] 
+[aost#0:1/aac @ 0x105006b80] Created audio stream from input stream 0:1
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 64, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft32_ns_float_neon - type: fft_float, len: 32, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 64, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft32_ns_float_neon - type: fft_float, len: 32, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_3xM_inv_float_c - type: mdct_float, len: 96, factors[2]: [3, any], flags: [unaligned, out_of_place, inv_only]
+        fft16_ns_float_neon - type: fft_float, len: 16, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_15xM_inv_float_c - type: mdct_float, len: 120, factors[2]: [15, any], flags: [unaligned, out_of_place, inv_only]
+        fft4_fwd_float_neon - type: fft_float, len: 4, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 128, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 64, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_15xM_inv_float_c - type: mdct_float, len: 480, factors[2]: [15, any], flags: [unaligned, out_of_place, inv_only]
+        fft16_ns_float_neon - type: fft_float, len: 16, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 512, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 256, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_3xM_inv_float_c - type: mdct_float, len: 768, factors[2]: [3, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 128, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_pfa_15xM_inv_float_c - type: mdct_float, len: 960, factors[2]: [15, any], flags: [unaligned, out_of_place, inv_only]
+        fft32_ns_float_neon - type: fft_float, len: 32, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_inv_float_c - type: mdct_float, len: 1024, factors[2]: [2, any], flags: [unaligned, out_of_place, inv_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 512, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_fwd_float_c - type: mdct_float, len: 1024, factors[2]: [2, any], flags: [unaligned, out_of_place, fwd_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 512, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+[out#0/dash @ 0x105004590] Codec AVOption b_strategy (Strategy to choose between I/P/B-frames) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.
+[out#0/dash @ 0x105004590] Codec AVOption preset (Set the encoding preset (cf. x264 --fullhelp)) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.
+[out#0/dash @ 0x105004590] Codec AVOption tune (Tune the encoding params (cf. x264 --fullhelp)) has not been used for any stream. The most likely reason is either wrong type (e.g. a video option with no video streams) or that it is a private option of some decoder which was not actually used for any stream.
+Successfully opened the file.
+[fc#0 @ 0x121a041a0] Binding input with label '0:v' to input stream 0:0
+detected 10 logical cores
+[h264 @ 0x1050106e0] nal_unit_type: 7(SPS), nal_ref_idc: 3
+[h264 @ 0x1050106e0] Decoding VUI
+[h264 @ 0x1050106e0] nal_unit_type: 8(PPS), nal_ref_idc: 3
+[fc#0 @ 0x121a041a0] Binding input with label '1:v' to input stream 1:0
+Stream mapping:
+  Stream #0:0 (h264) -> overlay
+  Stream #1:0 (png) -> overlay
+  overlay:default -> Stream #0:0 (h264_videotoolbox)
+  Stream #0:1 -> #0:1 (aac (native) -> aac (native))
+[vost#0:0/h264_videotoolbox @ 0x105005390] Starting thread...
+[aost#0:1/aac @ 0x105006b80] Starting thread...
+[fc#0 @ 0x121a041a0] Starting thread...
+[af#0:1 @ 0x105006620] Starting thread...
+[aist#0:1/aac @ 0x101305070] [dec:aac @ 0x105007b50] Starting thread...
+[vist#0:0/h264 @ 0x101304580] [dec:h264 @ 0x105004430] Starting thread...
+[vist#1:0/png @ 0x120f070f0] [dec:png @ 0x105070950] Starting thread...
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500] Starting thread...
+[in#1/png_pipe @ 0x1013051d0] Starting thread...
+Press [q] to stop, [?] for help
+[h264 @ 0x1050106e0] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[aac @ 0x105008fc0] skip 1024 / discard 0 samples due to side data
+[h264 @ 0x1050106e0] Format yuv420p chosen by get_format().
+[h264 @ 0x1050106e0] Reinit context to 1920x1088, pix_fmt: yuv420p
+[graph_-1_in_0:1 @ 0x12180eee0] Setting 'time_base' to value '1/44100'
+[graph_-1_in_0:1 @ 0x12180eee0] Setting 'sample_rate' to value '44100'
+[graph_-1_in_0:1 @ 0x12180eee0] Setting 'sample_fmt' to value 'fltp'
+[graph_-1_in_0:1 @ 0x12180eee0] Setting 'channel_layout' to value 'stereo'
+[graph_-1_in_0:1 @ 0x12180eee0] tb:1/44100 samplefmt:fltp samplerate:44100 chlayout:stereo
+[format_out_#0:1 @ 0x12180fdb0] Setting 'sample_fmts' to value 'fltp'
+[format_out_#0:1 @ 0x12180fdb0] Setting 'sample_rates' to value '48000'
+[format_out_#0:1 @ 0x12180fdb0] Setting 'channel_layouts' to value 'stereo'
+[auto_aresample_0 @ 0x1218115f0] Setting 'async' to value '1'
+[format_out_#0:1 @ 0x12180fdb0] auto-inserting filter 'auto_aresample_0' between the filter 'Parsed_anull_0' and the filter 'format_out_#0:1'
+[AVFilterGraph @ 0x12180e190] query_formats: 4 queried, 4 merged, 5 already done, 0 delayed
+[auto_aresample_0 @ 0x1218115f0] [SWR @ 0x108108000] Using fltp internally between filters
+[h264 @ 0x1050106e0] no picture 
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[auto_aresample_0 @ 0x1218115f0] ch:2 chl:stereo fmt:fltp r:44100Hz -> ch:2 chl:stereo fmt:fltp r:48000Hz
+Transform tree:
+    mdct_fwd_float_c - type: mdct_float, len: 1024, factors[2]: [2, any], flags: [unaligned, out_of_place, fwd_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 512, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+Transform tree:
+    mdct_fwd_float_c - type: mdct_float, len: 128, factors[2]: [2, any], flags: [unaligned, out_of_place, fwd_only]
+        fft_sr_ns_float_neon - type: fft_float, len: 64, factor: 2, flags: [aligned, inplace, out_of_place, preshuf]
+[h264 @ 0x1050193b0] no picture 
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.022875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.0213333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.0460833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.0426667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.0693125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.064 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.0925208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.0853333 queue head -1 ts N/A
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.11575
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.106667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.138958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.128 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.162187
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.149333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.185417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.170667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.208625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.192 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.231854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.213333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.255062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.234667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.278292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.256 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.277333 queue head -1 ts N/A
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.3015
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.298667 queue head -1 ts N/A
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[in#1/png_pipe @ 0x1013051d0] EOF while reading input
+[in#1/png_pipe @ 0x1013051d0] Terminating thread with return code 0 (success)
+[vist#1:0/png @ 0x120f070f0] [dec:png @ 0x105070950] Decoder thread received EOF packet
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[AVFilterGraph @ 0x100a067a0] Setting 'x' to value '50'
+[AVFilterGraph @ 0x100a067a0] Setting 'y' to value '50'
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.324729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.32 queue head -1 ts N/A
+[vist#1:0/png @ 0x120f070f0] [dec:png @ 0x105070950] Decoder returned EOF, finishing
+[vist#1:0/png @ 0x120f070f0] [dec:png @ 0x105070950] Terminating thread with return code 0 (success)
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[graph 0 input from stream 0:0 @ 0x100a06eb0] w:1920 h:1080 pixfmt:yuv420p tb:1/15360 fr:30/1 sar:1/1 csp:unknown range:unknown
+[graph 0 input from stream 1:0 @ 0x100a071c0] w:447 h:121 pixfmt:rgb24 tb:1/25 fr:25/1 sar:3779/3779 csp:gbr range:pc
+[scaler_out_#0:0 @ 0x100a076a0] Setting 'w' to value '3840'
+[scaler_out_#0:0 @ 0x100a076a0] Setting 'h' to value '2160'
+[scaler_out_#0:0 @ 0x100a076a0] w:3840 h:2160 flags:'' interl:0
+[format @ 0x100b061f0] Setting 'pix_fmts' to value 'nv12'
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[auto_scale_0 @ 0x120f0a4a0] w:iw h:ih flags:'' interl:0
+[Parsed_overlay_0 @ 0x100a06ba0] auto-inserting filter 'auto_scale_0' between the filter 'graph 0 input from stream 1:0' and the filter 'Parsed_overlay_0'
+[AVFilterGraph @ 0x100a067a0] query_formats: 6 queried, 12 merged, 3 already done, 0 delayed
+[auto_scale_0 @ 0x120f0a4a0] w:447 h:121 fmt:rgb24 csp:gbr range:pc sar:3779/3779 -> w:447 h:121 fmt:yuva420p csp:unknown range:unknown sar:1/1 flags:0x00000004
+[auto_scale_0 @ 0x120f0a4a0] [framesync @ 0x120f0a570] Selected 1/25 time base
+[auto_scale_0 @ 0x120f0a4a0] [framesync @ 0x120f0a570] Sync level 1
+[Parsed_overlay_0 @ 0x100a06ba0] main w:1920 h:1080 fmt:yuv420p overlay w:447 h:121 fmt:yuva420p
+[Parsed_overlay_0 @ 0x100a06ba0] [framesync @ 0x100a06c88] Selected 1/76800 time base
+[Parsed_overlay_0 @ 0x100a06ba0] [framesync @ 0x100a06c88] Sync level 2
+[scaler_out_#0:0 @ 0x100a076a0] w:1920 h:1080 fmt:yuv420p csp:unknown range:unknown sar:1/1 -> w:3840 h:2160 fmt:nv12 csp:unknown range:unknown sar:1/1 flags:0x00000004
+[scaler_out_#0:0 @ 0x100a076a0] [framesync @ 0x100a07770] Selected 1/15360 time base
+[scaler_out_#0:0 @ 0x100a076a0] [framesync @ 0x100a07770] Sync level 1
+[graph 0 input from stream 0:0 @ 0x100a06eb0] video frame properties congruent with link at pts_time: 0
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.347938
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.341333 queue head -1 ts N/A
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.371167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.362667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.394396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.384 queue head -1 ts N/A
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[Parsed_overlay_0 @ 0x100a06ba0] Copying data in avfilter.
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[Parsed_overlay_0 @ 0x100a06ba0] n:1.000000 t:0.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.417604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.405333 queue head -1 ts N/A
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.440833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.426667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.464042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.448 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.487271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.469333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.510479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.490667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.533708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.512 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.533333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.556917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.554667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.580146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.576 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.603375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.597333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.626583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.618667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.649813
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.64 queue head -1 ts N/A
+[h264_videotoolbox @ 0x105005bc0] Init the encoder: com.apple.videotoolbox.videoencoder.ave.avc
+[h264_videotoolbox @ 0x105005bc0] This device does not support the AllowOpenGop option. Value ignored.
+[h264_videotoolbox @ 0x105005bc0] Init the encoder: com.apple.videotoolbox.videoencoder.ave.avc
+[h264_videotoolbox @ 0x105005bc0] This device does not support the AllowOpenGop option. Value ignored.
+[dash @ 0x105004c30] Enabling streaming as LHLS is enabled
+[dash @ 0x105004c30] Map stream 0
+[dash @ 0x105004c30] Map stream 1
+[dash @ 0x105004c30] Opening '0/init_stream_15000000.mp4' for writing
+[file @ 0x120e32b00] Setting default whitelist 'file,crypto,data'
+[mp4 @ 0x120e31ea0] Empty MOOV enabled; disabling automatic bitstream filtering
+[dash @ 0x105004c30] Representation 0 init segment will be written to: 0/init_stream_15000000.mp4
+[dash @ 0x105004c30] Opening '1/init_stream_128000.mp4' for writing
+[file @ 0x12181c840] Setting default whitelist 'file,crypto,data'
+[mp4 @ 0x1218157a0] Empty MOOV enabled; disabling automatic bitstream filtering
+[dash @ 0x105004c30] Representation 1 init segment will be written to: 1/init_stream_128000.mp4
+Output #0, dash, to 'video.mpd':
+  Metadata:
+    major_brand     : isom
+    minor_version   : 512
+    compatible_brands: isomiso2avc1mp41
+    title           : Tears of Steel
+    encoder         : Lavf61.9.107
+  Stream #0:0, 0, 1/12288: Video: h264, nv12(bottom coded first (swapped)), 3840x2160 [SAR 1:1 DAR 16:9], q=2-31, 15000 kb/s, 24 fps, 12288 tbn
+    Metadata:
+      encoder         : Lavc61.33.100 h264_videotoolbox
+  Stream #0:1(eng), 0, 1/48000: Audio: aac (LC), 48000 Hz, stereo, fltp, 128 kb/s (default)
+    Metadata:
+      encoder         : Lavc61.33.100 aac
+      vendor_id       : [0][0][0][0]
+      handler_name    : SoundHandler
+[out#0/dash @ 0x105004590] Starting thread...
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.0416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.0416667 queue head -1 ts N/A
+[auto_scale_0 @ 0x120f0a4a0] [framesync @ 0x120f0a570] Sync level 0
+[Parsed_overlay_0 @ 0x100a06ba0] n:2.000000 t:0.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Forced keyframe at time 0.000000
+[h264_videotoolbox @ 0x105005bc0] Color range not set for nv12. Using MPEG range.
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] Clipping frame in rate conversion by 0.199989
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.0833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.0833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:3.000000 t:0.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] Clipping frame in rate conversion by 0.399986
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:4.000000 t:0.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.673021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.661333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.69625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.682667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.719458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.704 queue head -1 ts N/A
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.742687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.725333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.765896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.746667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.789125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.768 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.812354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.789333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.810667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.835562
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.832 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.858792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.853333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.882
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.874667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.905229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.896 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.928437
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.917333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.951667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.938667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.974896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.96 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 0.998104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 0.981333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.021333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.002667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.044542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.024 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] Clipping frame in rate conversion by 0.599998
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:5.000000 t:0.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.067771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.045333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.066667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] Past duration 0.799995 too large
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:6.000000 t:0.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.090979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.088 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.114208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.109333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:7.000000 t:0.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.137417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.130667 queue head -1 ts N/A
+[AVIOContext @ 0x121815480] Statistics: 818 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening '0/chunk_stream_15000000_0.m4s.tmp' for writing
+[file @ 0x100c0b3c0] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x100c0b1d0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x100c0be20] Statistics: 2134 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'master.m3u8.tmp' for writing
+[file @ 0x100c0bc60] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x100c0be20] Statistics: 248 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:8.000000 t:0.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.160646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.152 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.183875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.173333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:9.000000 t:0.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.207083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.194667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.375 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:10.000000 t:0.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.230312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.216 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.253521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.237333 queue head -1 ts N/A
+[AVIOContext @ 0x12181d180] Statistics: 764 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening '1/chunk_stream_128000_-1024.m4s.tmp' for writing
+[file @ 0x121a0aaa0] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x121a0a7d0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x121a09e60] Statistics: 2134 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:11.000000 t:0.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.27675
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.258667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:12.000000 t:0.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.299958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.28 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 10 at ts 8
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:13.000000 t:0.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.323187
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.301333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.322667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.346396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.344 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:14.000000 t:0.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.369625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.365333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:15.000000 t:0.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.392854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.386667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.416063
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.408 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:16.000000 t:0.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.439292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.429333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:17.000000 t:0.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.4625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.450667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.485729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.472 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 14 at ts 12
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:18.000000 t:0.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.508938
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.493333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:19.000000 t:0.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.532167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.514667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.555375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.536 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:20.000000 t:0.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.578604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.557333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:21.000000 t:0.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.601833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.578667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.6 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:22.000000 t:0.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.625042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.621333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.648271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.642667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 18 at ts 16
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:23.000000 t:0.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.671479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.664 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:24.000000 t:0.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.694708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.685333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.717917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.706667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:25.000000 t:0.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.741146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.728 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:26.000000 t:0.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.764354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.749333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.787583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.770667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:27.000000 t:0.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.810812
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.792 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 22 at ts 20
+[out#0/dash @ 0x105004590] sq: send 0 ts 0.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 0.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:28.000000 t:0.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.834021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.813333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:29.000000 t:0.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.85725
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.834667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.856 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.880458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.877333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:30.000000 t:0.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.903687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.898667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:31.000000 t:1.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.926896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.92 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.950125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.941333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:32.000000 t:1.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.973333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.962667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 26 at ts 24
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:33.000000 t:1.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 1.996563
+[out#0/dash @ 0x105004590] sq: receive 1 ts 1.984 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.019792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.005333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.166667 queue head -1 ts N/A
+frame=   12 fps=0.0 q=-0.0 size=N/A time=00:00:00.41 bitrate=N/A dup=0 drop=5 speed=0.828x    [Parsed_overlay_0 @ 0x100a06ba0] n:34.000000 t:1.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.043
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.026667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:35.000000 t:1.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.066229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.048 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.089437
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.069333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:36.000000 t:1.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.112667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.090667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.112 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:37.000000 t:1.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.135875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.133333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 30 at ts 28
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:38.000000 t:1.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.159104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.154667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.182333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.176 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:39.000000 t:1.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.205542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.197333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.375 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:40.000000 t:1.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.228771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.218667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.251979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.24 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:41.000000 t:1.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.275208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.261333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:42.000000 t:1.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.298417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.282667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.321646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.304 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 34 at ts 32
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:43.000000 t:1.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.344854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.325333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:44.000000 t:1.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.368083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.346667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.368 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:45.000000 t:1.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.391312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.389333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.414521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.410667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:46.000000 t:1.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.43775
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.432 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:47.000000 t:1.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.460958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.453333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.484187
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.474667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 38 at ts 36
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:48.000000 t:1.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.507396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.496 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:49.000000 t:1.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.530625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.517333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.553833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.538667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:50.000000 t:1.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.577062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.56 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:51.000000 t:1.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.600292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.581333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:52.000000 t:1.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.6235
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.602667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.646729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.624 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.645333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 42 at ts 40
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:53.000000 t:1.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.669938
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.666667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:54.000000 t:1.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.693167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.688 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.716375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.709333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:55.000000 t:1.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.739604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.730667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:56.000000 t:1.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.762812
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.752 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.786042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.773333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:57.000000 t:1.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.809271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.794667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 46 at ts 44
+[out#0/dash @ 0x105004590] sq: send 0 ts 1.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 1.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:58.000000 t:1.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.832479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.816 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.855708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.837333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:59.000000 t:1.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.878917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.858667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:60.000000 t:1.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.902146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.88 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.901333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:61.000000 t:2.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.925354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.922667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.948583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.944 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:62.000000 t:2.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.971792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.965333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 50 at ts 48
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:63.000000 t:2.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 2.995021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 2.986667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.01825
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.008 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:64.000000 t:2.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+frame=   37 fps= 37 q=-0.0 size=N/A time=00:00:01.45 bitrate=N/A dup=0 drop=11 speed=1.45x    [out#0/dash @ 0x105004590] sq: send 1 ts 3.041458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.029333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:65.000000 t:2.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.064687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.050667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.087896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.072 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:66.000000 t:2.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.111125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.093333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:67.000000 t:2.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.134333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.114667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 54 at ts 52
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:68.000000 t:2.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.157563
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.136 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.157333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.180792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.178667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:69.000000 t:2.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.204
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.2 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.375 queue head -1 ts N/A
+[vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Forced keyframe at time 2.000000
+[Parsed_overlay_0 @ 0x100a06ba0] n:70.000000 t:2.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.227229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.221333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.250437
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.242667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:71.000000 t:2.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.273667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.264 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:72.000000 t:2.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.296875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.285333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.320104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.306667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 58 at ts 56
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:73.000000 t:2.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.343312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.328 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:74.000000 t:2.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.366542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.349333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:75.000000 t:2.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.389771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.370667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.412979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.392 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:76.000000 t:2.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.436208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.413333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.434667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:77.000000 t:2.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.459417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.456 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.482646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.477333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 62 at ts 60
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:78.000000 t:2.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.505854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.498667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:79.000000 t:2.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.529083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.52 queue head -1 ts N/A
+[AVIOContext @ 0x100c0bd00] Statistics: 317365 bytes written, 0 seeks, 3 writeouts
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.552292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.541333 queue head -1 ts N/A
+[dash @ 0x105004c30] Representation 0 media segment 2 written to: 0/chunk_stream_15000000_0.m4s
+[AVIOContext @ 0x121a09d40] Statistics: 32635 bytes written, 0 seeks, 2 writeouts
+[dash @ 0x105004c30] Representation 1 media segment 2 written to: 1/chunk_stream_128000_-1024.m4s
+[dash @ 0x105004c30] Opening '0/chunk_stream_15000000_24576.m4s.tmp' for writing
+[file @ 0x120f22bc0] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x120f0b640] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x120f14f40] Statistics: 2450 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_0.m3u8.tmp' for writing
+[file @ 0x120f146e0] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x120f14f40] Statistics: 219 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:80.000000 t:2.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[dash @ 0x105004c30] Opening '1/chunk_stream_128000_94208.m4s.tmp' for writing
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[file @ 0x10507ba60] Setting default whitelist 'file,crypto,data'
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.575521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.562667 queue head -1 ts N/A
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x100c07ab0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x100c0ad50] Statistics: 2450 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_1.m3u8.tmp' for writing
+[file @ 0x100c0c0f0] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x100c0ad50] Statistics: 219 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:81.000000 t:2.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.59875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.584 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.621958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.605333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:82.000000 t:2.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.645188
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.626667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 66 at ts 64
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:83.000000 t:2.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.668396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.648 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:84.000000 t:2.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.691625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.669333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.690667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.714833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.712 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:85.000000 t:2.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.738062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.733333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:86.000000 t:2.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.761271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.754667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.7845
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.776 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:87.000000 t:2.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.807729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.797333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 70 at ts 68
+[out#0/dash @ 0x105004590] sq: send 0 ts 2.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 2.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:88.000000 t:2.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.830937
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.818667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.854167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.84 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:89.000000 t:2.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.877375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.861333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:90.000000 t:2.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.900604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.882667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:91.000000 t:3.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.923812
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.904 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.947042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.925333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.946667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:92.000000 t:3.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.97025
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.968 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 74 at ts 72
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:93.000000 t:3.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 3.993479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 3.989333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.016708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.010667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:94.000000 t:3.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.039917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.032 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.208333 queue head -1 ts N/A
+frame=   61 fps= 40 q=-0.0 size=N/A time=00:00:02.45 bitrate=N/A dup=0 drop=17 speed=1.63x    [Parsed_overlay_0 @ 0x100a06ba0] n:95.000000 t:3.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.063146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.053333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.086354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.074667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:96.000000 t:3.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.109583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.096 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:97.000000 t:3.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.132792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.117333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.156021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.138667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 78 at ts 76
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:98.000000 t:3.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.179229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.16 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:99.000000 t:3.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.202458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.181333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.375 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:100.000000 t:3.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.225688
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.202667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.224 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.248896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.245333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:101.000000 t:3.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.272125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.266667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:102.000000 t:3.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.295333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.288 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.318562
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.309333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 82 at ts 80
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:103.000000 t:3.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.341771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.330667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:104.000000 t:3.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.365
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.352 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.388229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.373333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:105.000000 t:3.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.411437
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.394667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:106.000000 t:3.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.434667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.416 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:107.000000 t:3.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.457875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.437333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.481104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.458667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.48 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 86 at ts 84
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:108.000000 t:3.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 5(IDR), nal_ref_idc: 3
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.504313
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.501333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:109.000000 t:3.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.527542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.522667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.55075
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.544 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:110.000000 t:3.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.573979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.565333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:111.000000 t:3.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.597208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.586667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.620417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.608 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:112.000000 t:3.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.643646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.629333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 90 at ts 88
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:113.000000 t:3.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.666854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.650667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:114.000000 t:3.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.690083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.672 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.713292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.693333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:115.000000 t:3.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.736521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.714667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.736 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:116.000000 t:3.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.759729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.757333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.782958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.778667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:117.000000 t:3.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.806188
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.8 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 94 at ts 92
+[out#0/dash @ 0x105004590] sq: send 0 ts 3.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 3.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:118.000000 t:3.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.829396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.821333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.852625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.842667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:119.000000 t:3.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.875833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.864 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:120.000000 t:3.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.899062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.885333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.922271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.906667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:121.000000 t:4.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.9455
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.928 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:122.000000 t:4.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.968708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.949333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 98 at ts 96
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:123.000000 t:4.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 4.991937
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.970667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.015167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 4.992 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.013333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:124.000000 t:4.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.038375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.034667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.208333 queue head -1 ts N/A
+frame=   85 fps= 42 q=-0.0 size=N/A time=00:00:03.45 bitrate=N/A dup=0 drop=23 speed=1.72x    [Parsed_overlay_0 @ 0x100a06ba0] n:125.000000 t:4.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.061604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.056 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.084812
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.077333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:126.000000 t:4.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.108042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.098667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:127.000000 t:4.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.13125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.12 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.154479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.141333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 102 at ts 100
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:128.000000 t:4.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.177688
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.162667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:129.000000 t:4.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.200917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.184 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.375 queue head -1 ts N/A
+[vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Forced keyframe at time 4.000000
+[Parsed_overlay_0 @ 0x100a06ba0] n:130.000000 t:4.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.224146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.205333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.247354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.226667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:131.000000 t:4.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.270583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.248 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.269333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:132.000000 t:4.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.293792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.290667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.317021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.312 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 106 at ts 104
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:133.000000 t:4.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.340229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.333333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:134.000000 t:4.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.363458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.354667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.386667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.376 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:135.000000 t:4.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.409896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.397333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:136.000000 t:4.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.433125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.418667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.456333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.44 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:137.000000 t:4.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.479563
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.461333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 110 at ts 108
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:138.000000 t:4.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.502771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.482667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:139.000000 t:4.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[AVIOContext @ 0x120f144f0] Statistics: 316304 bytes written, 0 seeks, 3 writeouts
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.526
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.504 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.525333 queue head -1 ts N/A
+[dash @ 0x105004c30] Representation 0 media segment 3 written to: 0/chunk_stream_15000000_24576.m4s
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.549208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.546667 queue head -1 ts N/A
+[AVIOContext @ 0x100c0bd00] Statistics: 32699 bytes written, 0 seeks, 2 writeouts
+[dash @ 0x105004c30] Representation 1 media segment 3 written to: 1/chunk_stream_128000_94208.m4s
+[dash @ 0x105004c30] Opening '0/chunk_stream_15000000_49152.m4s.tmp' for writing
+[file @ 0x120f23310] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x100b05a70] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x100b05bc0] Statistics: 2478 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_0.m3u8.tmp' for writing
+[file @ 0x100b06160] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x100b05bc0] Statistics: 325 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.708333 queue head -1 ts N/A
+[dash @ 0x105004c30] Opening '1/chunk_stream_128000_190464.m4s.tmp' for writing
+[file @ 0x121813740] Setting default whitelist 'file,crypto,data'
+[Parsed_overlay_0 @ 0x100a06ba0] n:140.000000 t:4.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x12181cc00] Setting default whitelist 'file,crypto,data'
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.572437
+[AVIOContext @ 0x121811f20] Statistics: 2478 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.568 queue head -1 ts N/A
+[dash @ 0x105004c30] Opening 'media_1.m3u8.tmp' for writing
+[file @ 0x121812fd0] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x121811f20] Statistics: 323 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:141.000000 t:4.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.595667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.589333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.618875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.610667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:142.000000 t:4.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.642104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.632 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 114 at ts 112
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:143.000000 t:4.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.665312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.653333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.688542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.674667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:144.000000 t:4.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.71175
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.696 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:145.000000 t:4.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.734979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.717333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:146.000000 t:4.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.758188
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.738667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.781417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.76 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.781333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:147.000000 t:4.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.804646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.802667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 118 at ts 116
+[out#0/dash @ 0x105004590] sq: send 0 ts 4.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 4.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:148.000000 t:4.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.827854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.824 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.851083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.845333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:149.000000 t:4.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.874292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.866667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:150.000000 t:4.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.897521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.888 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.920729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.909333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:151.000000 t:5.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.943958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.930667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:152.000000 t:5.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.967167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.952 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 122 at ts 120
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:153.000000 t:5.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 5.990396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.973333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.013625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 5.994667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:154.000000 t:5.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.036833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.016 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:155.000000 t:5.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.060062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.037333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.058667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.083271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.08 queue head -1 ts N/A
+frame=  110 fps= 44 q=-0.0 size=N/A time=00:00:04.50 bitrate=N/A dup=0 drop=29 speed=1.79x    [out#0/dash @ 0x105004590] sq: send 0 ts 5.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:156.000000 t:5.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.1065
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.101333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:157.000000 t:5.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.129708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.122667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.152938
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.144 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 126 at ts 124
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:158.000000 t:5.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.176146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.165333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:159.000000 t:5.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.199375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.186667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.222604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.208 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.375 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:160.000000 t:5.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.245812
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.229333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:161.000000 t:5.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.269042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.250667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:162.000000 t:5.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.29225
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.272 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.315479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.293333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.314667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 130 at ts 128
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:163.000000 t:5.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.338687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.336 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:164.000000 t:5.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.361917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.357333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.385125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.378667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:165.000000 t:5.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.408354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.4 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:166.000000 t:5.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.431583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.421333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.454792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.442667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:167.000000 t:5.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.478021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.464 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 134 at ts 132
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:168.000000 t:5.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.501229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.485333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:169.000000 t:5.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.524458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.506667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.547667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.528 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:170.000000 t:5.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.570896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.549333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.570667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:171.000000 t:5.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.594125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.592 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.617333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.613333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:172.000000 t:5.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.640562
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.634667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 138 at ts 136
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:173.000000 t:5.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.663771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.656 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.677333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:174.000000 t:5.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.710208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.698667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:175.000000 t:5.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.733437
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.72 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:176.000000 t:5.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.756646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.741333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.779875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.762667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:177.000000 t:5.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.803104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.784 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 142 at ts 140
+[out#0/dash @ 0x105004590] sq: send 0 ts 5.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 5.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:178.000000 t:5.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.826312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.805333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.849542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.826667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.848 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:179.000000 t:5.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.87275
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.869333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:180.000000 t:5.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.895979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.890667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.919187
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.912 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:181.000000 t:6.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.942417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.933333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:182.000000 t:6.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.965625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.954667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 6.988854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.976 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 146 at ts 144
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:183.000000 t:6.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.012083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 6.997333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:184.000000 t:6.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.035292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.018667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:185.000000 t:6.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.058521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.04 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.081729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.061333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.25 queue head -1 ts N/A
+frame=  134 fps= 44 q=-0.0 size=N/A time=00:00:05.50 bitrate=N/A dup=0 drop=35 speed=1.82x    [Parsed_overlay_0 @ 0x100a06ba0] n:186.000000 t:6.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.104958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.082667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.104 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:187.000000 t:6.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.128167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.125333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.151396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.146667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 150 at ts 148
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:188.000000 t:6.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.174604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.168 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:189.000000 t:6.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.197833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.189333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.221062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.210667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.375 queue head -1 ts N/A
+[vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Forced keyframe at time 6.000000
+[Parsed_overlay_0 @ 0x100a06ba0] n:190.000000 t:6.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.244271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.232 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:191.000000 t:6.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.2675
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.253333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:192.000000 t:6.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.290708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.274667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.313937
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.296 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 154 at ts 152
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:193.000000 t:6.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.337146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.317333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:194.000000 t:6.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.360375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.338667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.36 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.383583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.381333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:195.000000 t:6.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.406813
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.402667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:196.000000 t:6.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.430042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.424 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.45325
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.445333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:197.000000 t:6.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.476479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.466667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 158 at ts 156
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:198.000000 t:6.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.499687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.488 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.522917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.509333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:199.000000 t:6.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.546125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.530667 queue head -1 ts N/A
+[AVIOContext @ 0x100b042b0] Statistics: 1101681 bytes written, 0 seeks, 6 writeouts
+[dash @ 0x105004c30] Representation 0 media segment 4 written to: 0/chunk_stream_15000000_49152.m4s
+[AVIOContext @ 0x1218149c0] Statistics: 33487 bytes written, 0 seeks, 2 writeouts
+[dash @ 0x105004c30] Representation 1 media segment 4 written to: 1/chunk_stream_128000_190464.m4s
+[dash @ 0x105004c30] Opening '0/chunk_stream_15000000_73728.m4s.tmp' for writing
+[file @ 0x120e086e0] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x120e35810] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x120e33d20] Statistics: 2484 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_0.m3u8.tmp' for writing
+[file @ 0x120e33d20] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x120e33da0] Statistics: 431 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:200.000000 t:6.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[dash @ 0x105004c30] Opening '1/chunk_stream_128000_286720.m4s.tmp' for writing
+[file @ 0x121813740] Setting default whitelist 'file,crypto,data'
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x12180f6e0] Setting default whitelist 'file,crypto,data'
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.569354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.552 queue head -1 ts N/A
+[AVIOContext @ 0x121815480] Statistics: 2484 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_1.m3u8.tmp' for writing
+[file @ 0x12181c840] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x121815480] Statistics: 428 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:201.000000 t:6.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.592562
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.573333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.615792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.594667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:202.000000 t:6.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.639021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.616 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.637333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 162 at ts 160
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:203.000000 t:6.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.662229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.658667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.685458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.68 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:204.000000 t:6.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.708667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.701333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:205.000000 t:6.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.731896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.722667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.755104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.744 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:206.000000 t:6.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.778333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.765333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:207.000000 t:6.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.801563
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.786667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 166 at ts 164
+[out#0/dash @ 0x105004590] sq: send 0 ts 6.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 6.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:208.000000 t:6.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.824771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.808 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.848
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.829333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:209.000000 t:6.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.871208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.850667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:210.000000 t:6.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.894437
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.872 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.893333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.917646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.914667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:211.000000 t:7.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.940875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.936 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:212.000000 t:7.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.964083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.957333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 7.987312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 7.978667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 170 at ts 168
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:213.000000 t:7.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.010542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:214.000000 t:7.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.03375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.021333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:215.000000 t:7.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.056979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.042667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.080187
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.064 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.25 queue head -1 ts N/A
+frame=  158 fps= 45 q=-0.0 size=N/A time=00:00:06.50 bitrate=N/A dup=0 drop=41 speed=1.85x    [Parsed_overlay_0 @ 0x100a06ba0] n:216.000000 t:7.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.103417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.085333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:217.000000 t:7.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.126625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.106667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.149854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.128 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.149333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 174 at ts 172
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:218.000000 t:7.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.173063
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.170667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:219.000000 t:7.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.196292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.192 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.219521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.213333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.375 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:220.000000 t:7.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.242729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.234667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:221.000000 t:7.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.265958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.256 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.289167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.277333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:222.000000 t:7.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.312396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.298667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 178 at ts 176
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:223.000000 t:7.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.335604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.32 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:224.000000 t:7.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.358833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.341333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.382042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.362667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:225.000000 t:7.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.405271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.384 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:226.000000 t:7.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.4285
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.405333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.426667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.451708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.448 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:227.000000 t:7.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.474937
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.469333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 182 at ts 180
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:228.000000 t:7.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.498146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.490667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.521375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.512 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:229.000000 t:7.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.544583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.533333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:230.000000 t:7.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.567813
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.554667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:231.000000 t:7.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.591021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.576 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.61425
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.597333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:232.000000 t:7.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.637479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.618667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 186 at ts 184
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:233.000000 t:7.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.660687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.64 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.683917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.661333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.682667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:234.000000 t:7.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.707125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.704 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:235.000000 t:7.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.730354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.725333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.753562
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.746667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:236.000000 t:7.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.776792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.768 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:237.000000 t:7.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.8
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.789333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.823229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.810667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 190 at ts 188
+[out#0/dash @ 0x105004590] sq: send 0 ts 7.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 7.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:238.000000 t:7.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.846458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.832 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:239.000000 t:7.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.869667
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.853333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:240.000000 t:7.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.892896
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.874667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.916104
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.896 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:241.000000 t:8.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.939333
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.917333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.938667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:242.000000 t:8.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.962542
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.96 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 8.985771
+[out#0/dash @ 0x105004590] sq: receive 1 ts 8.981333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 194 at ts 192
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:243.000000 t:8.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.009
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.002667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:244.000000 t:8.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.032208
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.024 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.055438
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.045333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:245.000000 t:8.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.078646
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.066667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:246.000000 t:8.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.101875
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.088 queue head -1 ts N/A
+frame=  183 fps= 45 q=-0.0 size=N/A time=00:00:07.54 bitrate=N/A dup=0 drop=47 speed=1.87x    [Parsed_overlay_0 @ 0x100a06ba0] n:247.000000 t:8.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.125083
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.109333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.148312
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.130667 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 198 at ts 196
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.291667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:248.000000 t:8.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.171521
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.152 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:249.000000 t:8.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.19475
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.173333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.194667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.217979
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.216 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.375 queue head -1 ts N/A
+[vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Forced keyframe at time 8.000000
+[Parsed_overlay_0 @ 0x100a06ba0] n:250.000000 t:8.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.241188
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.237333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:251.000000 t:8.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.264417
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.258667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.287625
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.28 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:252.000000 t:8.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.310854
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.301333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 202 at ts 200
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:253.000000 t:8.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.334062
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.322667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:254.000000 t:8.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.357292
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.344 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.3805
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.365333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:255.000000 t:8.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.403729
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.386667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:256.000000 t:8.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.426958
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.408 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.450167
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.429333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:257.000000 t:8.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.473396
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.450667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.472 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 206 at ts 204
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:258.000000 t:8.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.496604
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.493333 queue head -1 ts N/A
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.519833
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.514667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:259.000000 t:8.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.543042
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.536 queue head -1 ts N/A
+[AVIOContext @ 0x120e08770] Statistics: 2044676 bytes written, 0 seeks, 9 writeouts
+[dash @ 0x105004c30] Representation 0 media segment 5 written to: 0/chunk_stream_15000000_73728.m4s
+[AVIOContext @ 0x1218102c0] Statistics: 33017 bytes written, 0 seeks, 2 writeouts
+[dash @ 0x105004c30] Representation 1 media segment 5 written to: 1/chunk_stream_128000_286720.m4s
+[dash @ 0x105004c30] Opening '0/chunk_stream_15000000_98304.m4s.tmp' for writing
+[file @ 0x120f14590] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x120f138a0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x120f15c70] Statistics: 2484 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_0.m3u8.tmp' for writing
+[file @ 0x120f13940] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x120f15c70] Statistics: 537 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:260.000000 t:8.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[dash @ 0x105004c30] Opening '1/chunk_stream_128000_382976.m4s.tmp' for writing
+[file @ 0x121a0a510] Setting default whitelist 'file,crypto,data'
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x121a0aed0] Setting default whitelist 'file,crypto,data'
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.566271
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.557333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.589479
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.578667 queue head -1 ts N/A
+[AVIOContext @ 0x121a0bc90] Statistics: 2484 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_1.m3u8.tmp' for writing
+[file @ 0x121a0aed0] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x121a0bc90] Statistics: 533 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:261.000000 t:8.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.612708
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.6 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:262.000000 t:8.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.635937
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.621333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 210 at ts 208
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:263.000000 t:8.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.659146
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.642667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.682375
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.664 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:264.000000 t:8.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.705583
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.685333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:265.000000 t:8.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.728813
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.706667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.728 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.752021
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.749333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:266.000000 t:8.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.77525
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.770667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:267.000000 t:8.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.798458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.792 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.821687
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.813333 queue head -1 ts N/A
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 214 at ts 212
+[out#0/dash @ 0x105004590] sq: send 0 ts 8.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 8.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:268.000000 t:8.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.844917
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.834667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 9
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:269.000000 t:8.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10502a9d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.868125
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.856 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:270.000000 t:8.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105033550] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.891354
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.877333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.914562
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.898667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:271.000000 t:9.000000 x:50.000000 xi:50 y:50.000000 yi:50
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500] EOF while reading input
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500] Terminating thread with return code 0 (success)
+[h264 @ 0x10503c0d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[aist#0:1/aac @ 0x101305070] [dec:aac @ 0x105007b50] Decoder thread received EOF packet
+[aist#0:1/aac @ 0x101305070] [dec:aac @ 0x105007b50] Decoder returned EOF, finishing
+[aist#0:1/aac @ 0x101305070] [dec:aac @ 0x105007b50] Terminating thread with return code 0 (success)
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.937792
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.92 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.961
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.941333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 9.984229
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.962667 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: receive 1 ts 9.984 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 10.007458
+[out#0/dash @ 0x105004590] sq: receive 1 ts 10.005333 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: send 1 ts 10.007812
+[out_#0:1 @ 0x12180fcf0] EOF on sink link out_#0:1:default.
+[af#0:1 @ 0x105006620] Filtergraph returned EOF, finishing
+[af#0:1 @ 0x105006620] All consumers returned EOF
+[out#0/dash @ 0x105004590] sq: 1 EOF
+[out#0/dash @ 0x105004590] sq: finish 1; head ts 10.007812
+[out#0/dash @ 0x105004590] sq: receive 1 ts 10.007812 queue head -1 ts N/A
+[out#0/dash @ 0x105004590] sq: 1 EOF
+[af#0:1 @ 0x105006620] Terminating thread with return code 0 (success)
+[Parsed_overlay_0 @ 0x100a06ba0] n:272.000000 t:9.033333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105044c50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 218 at ts 216
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.125
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.125 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:273.000000 t:9.066667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10504d7d0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.166667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.166667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:274.000000 t:9.100000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105056350] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.208333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.208333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:275.000000 t:9.133333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x10505eed0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.25
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.25 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:276.000000 t:9.166667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105067a50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[Parsed_overlay_0 @ 0x100a06ba0] n:277.000000 t:9.200000 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050106e0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 222 at ts 220
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.291667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.291667 queue head -1 ts N/A
+frame=  207 fps= 46 q=-0.0 size=N/A time=00:00:08.54 bitrate=N/A dup=0 drop=54 speed=1.89x    [Parsed_overlay_0 @ 0x100a06ba0] n:278.000000 t:9.233333 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x1050193b0] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 0
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.333333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.333333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:279.000000 t:9.266667 x:50.000000 xi:50 y:50.000000 yi:50
+[h264 @ 0x105021e50] nal_unit_type: 1(Coded slice of a non-IDR picture), nal_ref_idc: 2
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.375
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.375 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:280.000000 t:9.300000 x:50.000000 xi:50 y:50.000000 yi:50
+[vist#0:0/h264 @ 0x101304580] [dec:h264 @ 0x105004430] Decoder thread received EOF packet
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.416667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.416667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:281.000000 t:9.333333 x:50.000000 xi:50 y:50.000000 yi:50
+[Parsed_overlay_0 @ 0x100a06ba0] n:282.000000 t:9.366667 x:50.000000 xi:50 y:50.000000 yi:50
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 226 at ts 224
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.458333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.458333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:283.000000 t:9.400000 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.5
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.5 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:284.000000 t:9.433333 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.541667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.541667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:285.000000 t:9.466667 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.583333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.583333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:286.000000 t:9.500000 x:50.000000 xi:50 y:50.000000 yi:50
+[Parsed_overlay_0 @ 0x100a06ba0] n:287.000000 t:9.533333 x:50.000000 xi:50 y:50.000000 yi:50
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 230 at ts 228
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.625
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.625 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:288.000000 t:9.566667 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.666667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.666667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:289.000000 t:9.600000 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.708333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.708333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:290.000000 t:9.633333 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.75
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.75 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:291.000000 t:9.666667 x:50.000000 xi:50 y:50.000000 yi:50
+[Parsed_overlay_0 @ 0x100a06ba0] n:292.000000 t:9.700000 x:50.000000 xi:50 y:50.000000 yi:50
+[vist#0:0/h264 @ 0x101304580] [dec:h264 @ 0x105004430] Decoder returned EOF, finishing
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 234 at ts 232
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.791667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.791667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:293.000000 t:9.733333 x:50.000000 xi:50 y:50.000000 yi:50
+[vist#0:0/h264 @ 0x101304580] [dec:h264 @ 0x105004430] Terminating thread with return code 0 (success)
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.833333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.833333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:294.000000 t:9.766667 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.875
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.875 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] Copying data in avfilter.
+[Parsed_overlay_0 @ 0x100a06ba0] n:295.000000 t:9.800000 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.916667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.916667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] n:296.000000 t:9.833333 x:50.000000 xi:50 y:50.000000 yi:50
+[Parsed_overlay_0 @ 0x100a06ba0] Copying data in avfilter.
+[Parsed_overlay_0 @ 0x100a06ba0] n:297.000000 t:9.866667 x:50.000000 xi:50 y:50.000000 yi:50
+[fc#0 @ 0x121a041a0] [vo0->#0:0 @ 0x120f05fb0] *** dropping frame 238 at ts 236
+[out#0/dash @ 0x105004590] sq: send 0 ts 9.958333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 9.958333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] Copying data in avfilter.
+[Parsed_overlay_0 @ 0x100a06ba0] n:298.000000 t:9.900000 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 10
+[out#0/dash @ 0x105004590] sq: receive 0 ts 10 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] Copying data in avfilter.
+[Parsed_overlay_0 @ 0x100a06ba0] n:299.000000 t:9.933333 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 10.041667
+[out#0/dash @ 0x105004590] sq: receive 0 ts 10.041667 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] Copying data in avfilter.
+[Parsed_overlay_0 @ 0x100a06ba0] n:300.000000 t:9.966667 x:50.000000 xi:50 y:50.000000 yi:50
+[out#0/dash @ 0x105004590] sq: send 0 ts 10.083333
+[out#0/dash @ 0x105004590] sq: receive 0 ts 10.083333 queue head -1 ts N/A
+[Parsed_overlay_0 @ 0x100a06ba0] [framesync @ 0x100a06c88] Sync level 0
+[scaler_out_#0:0 @ 0x100a076a0] [framesync @ 0x100a07770] Sync level 0
+[out_#0:0 @ 0x100a07500] EOF on sink link out_#0:0:default.
+[fc#0 @ 0x121a041a0] Filtergraph returned EOF, finishing
+[fc#0 @ 0x121a041a0] All consumers returned EOF
+[out#0/dash @ 0x105004590] sq: 0 EOF
+[out#0/dash @ 0x105004590] sq: finish 0; head ts 10.083333
+[out#0/dash @ 0x105004590] sq: finish queue
+[aost#0:1/aac @ 0x105006b80] [enc:aac @ 0x105007210] Encoder thread received EOF
+[out#0/dash @ 0x105004590] sq: 0 EOF
+[out#0/dash @ 0x105004590] sq: finish queue
+[fc#0 @ 0x121a041a0] Terminating thread with return code 0 (success)
+[aac @ 0x105007280] Trying to remove 905 more samples than there are in the queue
+[aost#0:1/aac @ 0x105006b80] Terminating thread with return code 0 (success)
+frame=  232 fps= 46 q=-0.0 size=N/A time=N/A bitrate=N/A dup=0 drop=58 speed=N/A    [vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Forced keyframe at time 10.000000
+[vost#0:0/h264_videotoolbox @ 0x105005390] [enc:h264_videotoolbox @ 0x105005b50] Encoder thread received EOF
+[vost#0:0/h264_videotoolbox @ 0x105005390] Terminating thread with return code 0 (success)
+[AVIOContext @ 0x120f14440] Statistics: 2828008 bytes written, 0 seeks, 12 writeouts
+[dash @ 0x105004c30] Representation 0 media segment 6 written to: 0/chunk_stream_15000000_98304.m4s
+[AVIOContext @ 0x121a0adb0] Statistics: 32439 bytes written, 0 seeks, 2 writeouts
+[dash @ 0x105004c30] Representation 1 media segment 6 written to: 1/chunk_stream_128000_382976.m4s
+[dash @ 0x105004c30] Opening '0/chunk_stream_15000000_122880.m4s.tmp' for writing
+[file @ 0x120f0a170] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x120f140e0] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x120f22ea0] Statistics: 2506 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_0.m3u8.tmp' for writing
+[file @ 0x120f0ec10] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x121926750] Statistics: 643 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening '1/chunk_stream_128000_478208.m4s.tmp' for writing
+[file @ 0x121929ea0] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x121927680] Setting default whitelist 'file,crypto,data'
+[AVIOContext @ 0x1219273f0] Statistics: 2506 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_1.m3u8.tmp' for writing
+[file @ 0x1219074b0] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x1219273f0] Statistics: 638 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] All streams finished
+[out#0/dash @ 0x105004590] Terminating thread with return code 0 (success)
+[AVIOContext @ 0x120f0ead0] Statistics: 406834 bytes written, 0 seeks, 3 writeouts
+[dash @ 0x105004c30] Representation 0 media segment 7 written to: 0/chunk_stream_15000000_122880.m4s
+[AVIOContext @ 0x121926750] Statistics: 1177 bytes written, 0 seeks, 2 writeouts
+[dash @ 0x105004c30] Representation 1 media segment 7 written to: 1/chunk_stream_128000_478208.m4s
+[dash @ 0x105004c30] Opening 'video.mpd.tmp' for writing
+[file @ 0x120f07730] Setting default whitelist 'file,crypto,data'
+[dash @ 0x105004c30] Opening 'media_0.m3u8.tmp' for writing
+[file @ 0x120f0a170] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x120f22ea0] Statistics: 765 bytes written, 0 seeks, 1 writeouts
+[dash @ 0x105004c30] Opening 'media_1.m3u8.tmp' for writing
+[file @ 0x120f0a170] Setting default whitelist 'file,crypto,data'
+EXT-X-MEDIA-SEQUENCE:1
+[AVIOContext @ 0x120f22ea0] Statistics: 758 bytes written, 0 seeks, 1 writeouts
+[AVIOContext @ 0x120f0ead0] Statistics: 2206 bytes written, 0 seeks, 1 writeouts
+[out#0/dash @ 0x105004590] Output file #0 (video.mpd):
+[out#0/dash @ 0x105004590]   Output stream #0:0 (video): 242 frames encoded; 242 packets muxed (7010984 bytes); 
+[out#0/dash @ 0x105004590]   Output stream #0:1 (audio): 470 frames encoded (480375 samples); 471 packets muxed (162574 bytes); 
+[out#0/dash @ 0x105004590]   Total: 713 packets (7173558 bytes) muxed
+[out#0/dash @ 0x105004590] video:6847KiB audio:159KiB subtitle:0KiB other streams:0KiB global headers:0KiB muxing overhead: unknown
+frame=  242 fps= 46 q=-0.0 Lsize=N/A time=00:00:10.00 bitrate=N/A dup=0 drop=58 speed=1.91x    
+[aac @ 0x105007280] Qavg: 2168.542
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500] Input file #0 (big_bunny_10s_30fps.mp4):
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500]   Input stream #0:0 (video): 300 packets read (2380021 bytes); 300 frames decoded; 0 decode errors; 
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500]   Input stream #0:1 (audio): 432 packets read (162456 bytes); 431 frames decoded; 0 decode errors (441344 samples); 
+[in#0/mov,mp4,m4a,3gp,3g2,mj2 @ 0x120f05500]   Total: 732 packets (2542477 bytes) demuxed
+[AVIOContext @ 0x120f06900] Statistics: 2590945 bytes read, 2 seeks
+[in#1/png_pipe @ 0x1013051d0] Input file #1 (3840x2160.png):
+[in#1/png_pipe @ 0x1013051d0]   Input stream #1:0 (video): 1 packets read (10197 bytes); 1 frames decoded; 0 decode errors; 
+[in#1/png_pipe @ 0x1013051d0]   Total: 1 packets (10197 bytes) demuxed
+[AVIOContext @ 0x1013059e0] Statistics: 10197 bytes read, 0 seeks

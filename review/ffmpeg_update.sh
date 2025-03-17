@@ -1,0 +1,15 @@
+ffmpeg -threads 0 -i big_bunny_10s_30fps.mp4 -i 3840x2160.png \
+-filter_complex "[0:v][1:v]overlay=50:50[out0]" \
+-flags +cgop+ilme -pix_fmt nv12 -g 24 -keyint_min 48 -b_strategy 0 -bf 1 \
+-c:a:0 aac -b:a:0 128000 -preset veryfast -tune zerolatency -ac:a:0 2 -ar:a:0 48000 \
+-map "[out0]" \
+-map a:0 -s:v:0 3840x2160 -c:v:0 h264_videotoolbox -b:v:0 15000000 \
+-force_key_frames:v:0 "expr:gte(t,n_forced*2)" \
+-profile:v:0 high -level:v:0 5.2 \
+-minrate:v:0 15000000 -maxrate:v:0 15000000 -bufsize:v:0 15000000 \
+-metadata "title=Tears of Steel" -metadata:s:a:0 "language=eng" \
+-use_timeline 1 -use_template 1 -async 1 -vsync 1 -ldash 1 -lhls 1 -index_correction 1 -strftime 1 \
+-adaptation_sets "id=0,streams=0 id=1,streams=1" -mpd_profile 1+2 -hls_playlist 1 -hls_master_name master.m3u8 \
+-init_seg_name "\$RepresentationID\$/init_stream_\$Bandwidth\$.mp4" -media_seg_name "\$RepresentationID\$/chunk_stream_\$Bandwidth\$_\$Time\$.\$ext\$" \
+-seg_duration 2 -frag_duration 2 -frag_type duration -strict experimental -movflags +faststart+cmaf -write_prft 1 -utc_timing_url "https://time.akamai.com/?iso" \
+-dash_segment_type mp4 -chunk_duration_ms 2000 -r 24 -f dash video.mpd

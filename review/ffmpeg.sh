@@ -1,0 +1,16 @@
+ffmpeg -threads 4 -i big_bunny_1min_30fps.mp4 -i 3840x2160.png -i 2560x1440.png -i 1920x1080.png -i 1280x720.png -i 1024x576.png \
+-filter_complex "[0:v][1:v]overlay=50:50[out0]" -filter_complex "[0:v][2:v]overlay=50:50[out1]" -filter_complex "[0:v][3:v]overlay=50:50[out2]" -filter_complex "[0:v][4:v]overlay=50:50[out3]" -filter_complex "[0:v][5:v]overlay=50:50[out4]" \
+-flags +cgop+ilme -pix_fmt nv12 -g 24 -keyint_min 48 -b_strategy 0 -bf 1 \
+-c:a:0 aac -b:a:0 128000 -preset veryfast -tune zerolatency -ac:a:0 2 -ar:a:0 48000 \
+-map "[out0]" -map "[out1]" -map "[out2]" -map "[out3]" -map "[out4]" \
+-map a:0 -s:v:0 3840x2160 -c:v:0 libx264 -b:v:0 15000000 \
+-s:v:1 2560x1440 -c:v:1 libx264 -b:v:1 6500000 \
+-s:v:2 1920x1080 -c:v:2 libx264 -b:v:2 5000000 \
+-s:v:3 1280x720 -c:v:3 libx264 -b:v:3 1500000 \
+-s:v:4 1024x576 -c:v:4 libx264 -b:v:4 1000000 \
+-force_key_frames:v:0 "expr:gte(t,n_forced*2)" -force_key_frames:v:1 "expr:gte(t,n_forced*2)" -force_key_frames:v:2 "expr:gte(t,n_forced*2)" -force_key_frames:v:3 "expr:gte(t,n_forced*2)" -force_key_frames:v:4 "expr:gte(t,n_forced*2)" \
+-profile:v:0 high -level:v:0 5.2 -profile:v:1 high -level:v:1 5.2 -profile:v:2 high -level:v:2 4.1 -profile:v:3 high -level:v:3 4.0 -profile:v:4 main -level:v:4 4.0 -profile:v:5 baseline \
+-level:v:5 3.0 -minrate:v:0 15000000 -maxrate:v:0 15000000 -bufsize:v:0 15000000 -minrate:v:1 6500000 -maxrate:v:1 6500000 -bufsize:v:1 6500000 -minrate:v:2 5000000 -maxrate:v:2 5000000 -bufsize:v:2 5000000 -minrate:v:3 1500000 -maxrate:v:3 1500000 \
+-bufsize:v:3 1500000 -minrate:v:4 1000000 -maxrate:v:4 1000000 -bufsize:v:4 1000000 -metadata "title=Tears of Steel" -metadata:s:a:0 "language=eng" -use_timeline 1 -use_template 1 -async 1 -vsync 1 -ldash 1 -lhls 1 -index_correction 1 -strftime 1 \
+-adaptation_sets "id=0,streams=0,1,2,3,4 id=1,streams=5" -mpd_profile 1+2 -hls_playlist 1 -hls_master_name master.m3u8 -init_seg_name "\$RepresentationID\$/init_stream_\$Bandwidth\$.mp4" -media_seg_name "\$RepresentationID\$/chunk_stream_\$Bandwidth\$_\$Time\$.\$ext\$" \
+-seg_duration 2 -frag_duration 2 -frag_type duration -strict experimental -movflags +faststart+cmaf -write_prft 1 -utc_timing_url "https://time.akamai.com/?iso" -dash_segment_type mp4 -chunk_duration_ms 2000 -r 24 -f dash video.mpd -report
